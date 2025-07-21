@@ -1,0 +1,608 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to top right, #a0e7e5, #b4f8c8);
+  font-family: 'Great Vibes', cursive;
+  color: #034f4d;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.title {
+  font-size: 4em;
+  color: #027373;
+  margin: 0;
+  animation: fadeIn 2s ease-in-out;
+}
+
+.subtitle {
+  font-size: 1.8em;
+  margin: 20px 0 40px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.gallery img {
+  width: 200px;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+  transition: transform 0.4s;
+}
+
+.gallery img:hover {
+  transform: scale(1.1);
+}
+
+
+.closing {
+  margin-top: 60px;
+  font-size: 2em;
+  color: #035c5b;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+canvas#canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: block;
+  z-index: 0;
+}
+
+#intro {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #034f4d;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease;
+}
+
+.cake {
+  position: relative;
+  width: 120px;
+  height: 200px;
+  animation: bounce 2s ease-in-out infinite;
+}
+
+#fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none; /* hidden until scroll bottom */
+  z-index: 2;
+}
+
+.layer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 3px solid #027373;
+  border-radius: 10px;
+}
+
+.layer-bottom {
+  width: 120px;
+  height: 40px;
+  bottom: 20px;
+}
+
+.layer-middle {
+  width: 100px;
+  height: 40px;
+  bottom: 60px;
+}
+
+.layer-top {
+  width: 80px;
+  height: 40px;
+  bottom: 100px;
+}
+
+.candle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 10px;
+  height: 30px;
+  margin-left: -5px;
+  background: #027373;
+  border-radius: 2px;
+}
+
+.flame {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  width: 14px;
+  height: 20px;
+  margin-left: -7px;
+  background: radial-gradient(circle, #ff0 40%, #f90 70%, transparent 100%);
+  border-radius: 50%;
+  transform-origin: bottom center;
+  animation: flicker 0.3s infinite alternate;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  animation: sparkle 2s infinite ease-in-out;
+  opacity: 0;
+}
+
+.sparkle1 {
+  top: -30px;
+  left: 20px;
+  animation-delay: 0s;
+}
+
+.sparkle2 {
+  top: -40px;
+  right: 20px;
+  animation-delay: 0.5s;
+}
+
+.sparkle3 {
+  top: -50px;
+  left: 60px;
+  animation-delay: 1s;
+}
+
+.intro-text {
+  font-size: 3em;
+  margin-top: 40px;
+  color: #fff;
+  font-family: 'Great Vibes', cursive;
+  opacity: 0;
+  animation: fadeText 2s ease forwards;
+  animation-delay: 2s;
+}
+
+@keyframes flicker {
+  0% { transform: scaleY(1) rotate(-2deg); opacity: 1; }
+  100% { transform: scaleY(1.2) rotate(2deg); opacity: 0.8; }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0; transform: scale(0.5) translateY(0); }
+  50% { opacity: 1; transform: scale(1) translateY(-20px); }
+  100% { opacity: 0; transform: scale(0.5) translateY(0); }
+}
+
+@keyframes fadeText {
+  to { opacity: 1; }
+}
+
+.envelope-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(145deg, #8B0000, #DC143C, #B22222);
+    cursor: pointer;
+    border-radius: 12px;
+    overflow: visible;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 20px 40px rgba(139, 0, 0, 0.4),
+        inset 0 2px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+    transform-style: preserve-3d;
+    border: 2px solid #FFD700;
+    position: relative;
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700, #FFA500);
+    border-radius: 14px;
+    z-index: -1;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.envelope::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+.envelope:hover {
+    transform: translateY(-10px) rotateY(5deg);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+}
+
+.envelope.opened {
+    transform: translateY(-20px) scale(1.05);
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 160px solid transparent;
+    border-right: 160px solid transparent;
+    border-bottom: 100px solid #654321;
+    transform-origin: top center;
+    transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3;
+    filter: drop-shadow(0 8px 16px rgba(139, 0, 0, 0.3));
+}
+
+.envelope .flap::before {
+    content: '';
+    position: absolute;
+    top: 95px;
+    left: -160px;
+    width: 320px;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.4), transparent);
+    border-radius: 3px;
+}
+
+.envelope .flap::after {
+    content: '💕';
+    position: absolute;
+    top: 50px;
+    left: -15px;
+    font-size: 24px;
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+    animation: heartbeat 2s ease-in-out infinite;
+}
+
+.envelope.opened .flap {
+    transform: rotateX(-180deg) translateZ(1px);
+    border-bottom-color: #8B4513;
+}
+
+.envelope .body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 320px;
+    height: 200px;
+    background: linear-gradient(145deg, #8B0000, #DC143C, #B22222);
+    border-radius: 12px;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.envelope .body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent 45%, rgba(255, 215, 0, 0.2) 50%, transparent 55%);
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+}
+
+.envelope .body::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px dashed rgba(255, 215, 0, 0.4);
+    border-radius: 8px;
+}
+
+.envelope:hover .body::before {
+    transform: translateX(100%);
+}
+
+.envelope .stamp {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    width: 50px;
+    height: 40px;
+    background: linear-gradient(45deg, #FFE4E1, #FFC0CB, #FFB6C1);
+    border: 3px solid #FFD700;
+    border-radius: 6px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    box-shadow: 
+        0 4px 12px rgba(139, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.envelope .stamp::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: repeating-linear-gradient(
+        0deg,
+        #FFD700,
+        #FFD700 2px,
+        transparent 2px,
+        transparent 6px
+    );
+    border-radius: 6px;
+    z-index: -1;
+}
+
+.envelope:hover .stamp {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.envelope .address {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    color: #FFD700;
+    font-family: 'Dancing Script', cursive;
+    font-size: 24px;
+    font-weight: 700;
+    z-index: 2;
+    text-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 215, 0, 0.4);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease 0.2s;
+}
+
+.envelope:hover .address {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.letter {
+    max-width: 500px;
+    margin-top: 50px;
+    padding: 40px;
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.8;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.8s ease;
+}
+
+.letter.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.letter.show::before {
+    left: 100%;
+}
+
+.letter h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8em;
+    background: linear-gradient(45deg, #8B0000, #DC143C, #FF1493);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.letter .greeting {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.4em;
+    color: #2c3e50;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.letter .birthday-wish {
+    font-size: 1.3em;
+    color: #e74c3c;
+    margin: 25px 0;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.letter .content {
+    color: #34495e;
+    margin: 20px 0;
+    font-weight: 400;
+}
+
+.letter .signature {
+    margin-top: 30px;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2em;
+    color: #c44569;
+    font-weight: 600;
+}
+
+.hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    color: rgba(255, 107, 107, 0.7);
+    animation: float 6s ease-in-out infinite;
+    opacity: 0;
+}
+
+.click-instruction {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+    font-weight: 300;
+    animation: pulse 2s infinite;
+    transition: opacity 0.5s ease;
+}
+
+.envelope.opened + .click-instruction {
+    opacity: 0;
+}
+
+@keyframes float {
+    0%, 100% { 
+        opacity: 0;
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% { 
+        opacity: 1;
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+@keyframes shimmer {
+    0%, 100% { 
+        background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700, #FFA500);
+    }
+    50% { 
+        background: linear-gradient(45deg, #FFA500, #FFD700, #FFA500, #FFD700);
+    }
+}
+
+@keyframes heartbeat {
+    0%, 100% { 
+        transform: scale(1);
+        filter: brightness(1);
+    }
+    50% { 
+        transform: scale(1.2);
+        filter: brightness(1.5);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+.sparkle {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #ffd700;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: sparkle 1s ease-out forwards;
+}
+
+@media (max-width: 600px) {
+    .envelope {
+        width: 280px;
+        height: 170px;
+    }
+    
+    .envelope .flap {
+        border-left: 140px solid transparent;
+        border-right: 140px solid transparent;
+        border-bottom: 85px solid #654321;
+    }
+    
+    .envelope .body {
+        width: 280px;
+        height: 170px;
+    }
+    
+    .letter {
+        margin: 30px 20px;
+        padding: 30px 25px;
+        max-width: calc(100% - 40px);
+    }
+    
+    .letter h1 {
+        font-size: 2.2em;
+    }
+}
