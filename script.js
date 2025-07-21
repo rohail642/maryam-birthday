@@ -151,12 +151,4 @@ let fadeAudio = setInterval(() => {
 }, 200);
 
 
-function init() {
-  for (let i = 0; i < 50; i++) {
-    petals.push(new Petal());
-  }
-  for (let i = 0; i < 30; i++) {
-    hearts.push(new Heart());
-  }
-}
 
