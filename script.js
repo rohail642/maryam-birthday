@@ -64,6 +64,32 @@ class Heart {
   }
 }
 
+function init() {
+  for (let i = 0; i < 50; i++) {
+    petals.push(new Petal());
+  }
+  for (let i = 0; i < 30; i++) {
+    hearts.push(new Heart());
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  petals.forEach(petal => {
+    petal.update();
+    petal.draw();
+  });
+  hearts.forEach(heart => {
+    heart.update();
+    heart.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+
+
 window.addEventListener('load', () => {
   const intro = document.getElementById('intro');
   setTimeout(() => {
@@ -133,20 +159,4 @@ function init() {
     hearts.push(new Heart());
   }
 }
-
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  petals.forEach(petal => {
-    petal.update();
-    petal.draw();
-  });
-  hearts.forEach(heart => {
-    heart.update();
-    heart.draw();
-  });
-  requestAnimationFrame(animate);
-}
-
-init();
-animate();
 
